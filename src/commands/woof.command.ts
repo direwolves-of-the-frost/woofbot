@@ -2,15 +2,23 @@ import {Message} from 'discord.js';
 import * as request from 'request-promise-native';
 import {Command} from './';
 
+const tags = ['doggo', 'doge'];
+
 export class WoofCommand extends Command {
 	public readonly trigger = 'woof';
 
-	public execute(message: Message, _: string[]): Promise<Message | Message[]> {
+	public execute(message: Message, args: string[]): Promise<Message | Message[]> {
+		let tag = tags[Math.floor(Math.random() * tags.length)];
+
+		if (args.length > 0) {
+			tag = args[0];
+		}
+
 		return request.get(`https://api.giphy.com/v1/gifs/random`, {
 			json: true,
 			qs: {
 				api_key: process.env.GIPHY_KEY,
-				tag: 'doggo',
+				tag,
 				format: 'json',
 				rating: 'r',
 			},
@@ -24,6 +32,6 @@ export class WoofCommand extends Command {
 	}
 
 	public help(): string {
-		return `\`!${this.trigger}\` displays a random doggo from giphy.\n\n`;
+		return `\`!${this.trigger} [tag]\` displays a random doggo from giphy, or something else if you're more specific.\n\n`;
 	}
 }
