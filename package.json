@@ -1,0 +1,51 @@
+{
+	"name": "woofbot",
+	"version": "0.0.1",
+	"description": "Woofbot is the official Discord bot for Direwolves of the Frost.",
+	"main": "bin/index.js",
+	"files": [
+		"bin/*.js"
+	],
+	"homepage": "https://github.com/direwolves-of-the-frost/woofbot/",
+	"license": "MIT",
+	"private": true,
+	"author": {
+		"name": "Josh Wood",
+		"email": "me@sk83rjo.sh",
+		"url": "https://sk83rjo.sh/"
+	},
+	"scripts": {
+		"clean": "rimraf ./bin",
+		"compile": "tsc -p .",
+		"lint": "tslint -c tslint.json 'src/**/*.ts'",
+		"build": "npm-run-all lint clean compile",
+		"test": "mocha -r ts-node/register src/**/*.spec.ts",
+		"server": "nodemon ./bin/index.js",
+		"start": "npm-run-all build server",
+		"watch:build": "tsc -p . --watch",
+		"watch:server": "nodemon ./bin/index.js --watch ./bin",
+		"watch:start": "npm-run-all clean build --parallel watch:build watch:server"
+	},
+	"dependencies": {
+		"discord.js": "^11.2.1",
+		"dotenv": "^4.0.0",
+		"request": "^2.83.0",
+		"request-promise-native": "^1.0.5",
+		"uws": "^0.14.1"
+	},
+	"devDependencies": {
+		"@types/dotenv": "^4.0.1",
+		"@types/request-promise-native": "^1.0.7",
+		"chai": "^4.1.2",
+		"mocha": "^4.0.1",
+		"nodemon": "^1.11.0",
+		"npm-run-all": "^4.0.2",
+		"rimraf": "^2.6.1",
+		"ts-node": "^3.3.0",
+		"tslint": "^5.7.0",
+		"typescript": "^2.4.2"
+	},
+	"engines": {
+		"node": ">=7.6.0"
+	}
+}
