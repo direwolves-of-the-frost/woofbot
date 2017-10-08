@@ -1,5 +1,5 @@
 import {Client, Message} from 'discord.js';
-import {Command} from './';
+import {Command} from './command';
 
 const deletionDelay = 30 * 1000;
 

@@ -1,5 +1,5 @@
 import {Message} from 'discord.js';
-import {CommandManager} from './';
+import {CommandManager} from './command.manager';
 
 export abstract class Command {
 	public readonly abstract trigger: string;

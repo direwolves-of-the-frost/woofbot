@@ -1,6 +1,6 @@
 import {Message} from 'discord.js';
 import * as request from 'request-promise-native';
-import {Command} from './';
+import {Command} from '../command';
 
 const tags = ['doggo', 'doge'];
 

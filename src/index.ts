@@ -1,6 +1,7 @@
 import {Client, Message} from 'discord.js';
 import * as dotenv from 'dotenv';
-import {CommandManager, HelpCommand, WeeklyCommand, WoofCommand} from './commands';
+import {CommandManager} from './command.manager';
+import {HelpCommand, WeeklyCommand, WoofCommand} from './commands';
 
 dotenv.config();
 

@@ -1,5 +1,5 @@
 import {Message} from 'discord.js';
-import {Command} from './';
+import {Command} from '../command';
 
 export class HelpCommand extends Command {
 	public readonly trigger = 'help';

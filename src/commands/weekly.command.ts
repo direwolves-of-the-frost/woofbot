@@ -1,6 +1,6 @@
 import {Message, RichEmbed} from 'discord.js';
 import * as request from 'request-promise-native';
-import {Command} from './';
+import {Command} from '../command';
 
 function API(endpoint: string): Promise<any> {
 	return request.get(`https://bungie.net/Platform/Destiny2/${endpoint}/`, {
