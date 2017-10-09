@@ -75,7 +75,7 @@ export interface DestinyMilestoneRewardEntry {
 
 export interface DestinyMilestoneRewardCategory {
 	rewardCategoryHash: number;
-	entries: DestinyMilestoneRewardEntry;
+	entries: DestinyMilestoneRewardEntry[];
 }
 
 export interface DestinyMilestone {
