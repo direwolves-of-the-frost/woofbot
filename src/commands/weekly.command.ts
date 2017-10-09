@@ -1,28 +1,15 @@
 import {Message, RichEmbed} from 'discord.js';
-import * as request from 'request-promise-native';
+import {BungieAPI} from '../bungie-api';
 import {Command} from '../command';
 
-function API(endpoint: string): Promise<any> {
-	return request.get(`https://bungie.net/Platform/Destiny2/${endpoint}/`, {
-		json: true,
-		headers: {
-			['X-API-Key']: process.env.BUNGIE_KEY,
-		},
-	}).then((data) => {
-		if (data.Response instanceof Object) {
-			return data.Response;
-		} else {
-			throw new Error('Destiny API error!');
-		}
-	});
-}
+const destiny = new BungieAPI(process.env.BUNGIE_KEY).destiny2;
 
 export class WeeklyCommand extends Command {
 	public readonly trigger = 'weekly';
 
 	public execute(message: Message, _: string[]): Promise<Message | Message[]> {
-		return API(`Clan/${process.env.BUNGIE_GROUP}/WeeklyRewardState`).then((state) => {
-			return API(`Manifest/DestinyMilestoneDefinition/${state.milestoneHash}`).then((definition) => {
+		return destiny.getClanWeeklyRewardState(parseInt(process.env.BUNGIE_GROUP, 10)).then((state) => {
+			return destiny.getDestinyEntityDefinition('DestinyMilestoneDefinition', state.milestoneHash).then((definition) => {
 				const promises: Array<Promise<Message | Message[]>> = [];
 
 				state.rewards.forEach((categoryState: any) => {
