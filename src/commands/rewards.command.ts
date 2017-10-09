@@ -9,7 +9,7 @@ export class RewardsCommand extends Command {
 
 	public execute(message: Message, _: string[]): Promise<Message | Message[]> {
 		return destiny.getClanWeeklyRewardState(parseInt(process.env.BUNGIE_GROUP, 10)).then((milestone) => {
-			return destiny.getDestinyEntityDefinition('DestinyMilestoneDefinition', milestone.milestoneHash).then((definition) => {
+			return destiny.getDestinyMilestoneDefinition(milestone.milestoneHash).then((definition) => {
 				const category = milestone.rewards.shift();
 				const categoryDefinition = definition.rewards[category.rewardCategoryHash];
 				const embed = new RichEmbed();
