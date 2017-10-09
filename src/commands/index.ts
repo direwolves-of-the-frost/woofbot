@@ -1,3 +1,3 @@
 export {HelpCommand} from './help.command';
-export {WeeklyCommand} from './weekly.command';
+export {RewardsCommand} from './rewards.command';
 export {WoofCommand} from './woof.command';
