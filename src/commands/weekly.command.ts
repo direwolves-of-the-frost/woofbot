@@ -8,11 +8,11 @@ export class WeeklyCommand extends Command {
 	public readonly trigger = 'weekly';
 
 	public execute(message: Message, _: string[]): Promise<Message | Message[]> {
-		return destiny.getClanWeeklyRewardState(parseInt(process.env.BUNGIE_GROUP, 10)).then((state) => {
-			return destiny.getDestinyEntityDefinition('DestinyMilestoneDefinition', state.milestoneHash).then((definition) => {
+		return destiny.getClanWeeklyRewardState(parseInt(process.env.BUNGIE_GROUP, 10)).then((milestone) => {
+			return destiny.getDestinyEntityDefinition('DestinyMilestoneDefinition', milestone.milestoneHash).then((definition) => {
 				const promises: Array<Promise<Message | Message[]>> = [];
 
-				state.rewards.forEach((categoryState: any) => {
+				milestone.rewards.forEach((categoryState: any) => {
 					const embed = new RichEmbed();
 					const category = definition.rewards[categoryState.rewardCategoryHash];
 
