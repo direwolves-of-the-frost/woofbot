@@ -4,11 +4,11 @@ dotenv.config();
 
 import {Client, Message} from 'discord.js';
 import {CommandManager} from './command.manager';
-import {HelpCommand, RewardsCommand, WoofCommand} from './commands';
+import {HelpCommand, PlayerCommand, RewardsCommand, WoofCommand} from './commands';
 
 const client = new Client();
 const commands = new CommandManager(client, {
-	commands: [HelpCommand, RewardsCommand, WoofCommand],
+	commands: [HelpCommand, PlayerCommand, RewardsCommand, WoofCommand],
 });
 
 client.on('message', (message: Message) => {
