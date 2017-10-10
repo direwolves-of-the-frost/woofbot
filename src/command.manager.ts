@@ -38,7 +38,10 @@ export class CommandManager {
 
 			this.commands.every((command) => {
 				if (command.trigger === trigger) {
-					command.execute(incomingMessage, args).then((outgoingMessage) => {
+					command.execute(incomingMessage, args).catch((err) => {
+						console.warn(err);
+						return incomingMessage.channel.send(`Sorry, I encountered an error when executing that command...`);
+					}).then((outgoingMessage) => {
 						if (incomingMessage.deletable) {
 							incomingMessage.delete(deletionDelay);
 
@@ -52,8 +55,6 @@ export class CommandManager {
 								outgoingMessage.delete(deletionDelay);
 							}
 						}
-					}).catch((err) => {
-						console.log(err);
 					});
 
 					return false;
