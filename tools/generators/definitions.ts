@@ -29,6 +29,10 @@ request('https://raw.githubusercontent.com/Bungie-net/api/master/openapi.json', 
 				const type = resolvable.type;
 
 				if (type === 'integer') {
+					if (resolvable.format.indexOf('int64') > -1) {
+						return 'string';
+					}
+
 					return 'number';
 				} else if (type === 'object') {
 					if (resolvable['x-dictionary-key'] !== undefined) {

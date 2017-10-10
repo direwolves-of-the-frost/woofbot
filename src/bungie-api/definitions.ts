@@ -17,19 +17,19 @@ export enum ApplicationScopes {
 }
 
 export interface GeneralUser {
-	membershipId: number;
+	membershipId: string;
 	uniqueName: string;
 	normalizedName: string;
 	displayName: string;
 	profilePicture: number;
 	profileTheme: number;
 	userTitle: number;
-	successMessageFlags: number;
+	successMessageFlags: string;
 	isDeleted: boolean;
 	about: string;
 	firstAccess?: string;
 	lastUpdate?: string;
-	legacyPortalUID?: number;
+	legacyPortalUID?: string;
 	context: UserToUserContext;
 	psnDisplayName: string;
 	xboxDisplayName: string;
@@ -37,7 +37,7 @@ export interface GeneralUser {
 	showActivity?: boolean;
 	locale: string;
 	localeInheritDefault: boolean;
-	lastBanReportId?: number;
+	lastBanReportId?: string;
 	showGroupMessaging: boolean;
 	profilePicturePath: string;
 	profilePictureWidePath: string;
@@ -112,7 +112,7 @@ export interface UserMembership {
 	/**
 	 * Membership ID as they user is known in the Accounts service
 	 */
-	membershipId: number;
+	membershipId: string;
 	/**
 	 * Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.
 	 */
@@ -138,7 +138,7 @@ export interface UserInfoCard {
 	/**
 	 * Membership ID as they user is known in the Accounts service
 	 */
-	membershipId: number;
+	membershipId: string;
 	/**
 	 * Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.
 	 */
@@ -205,8 +205,8 @@ export interface PostResponse {
 	userRating: number;
 	userHasRated: boolean;
 	userHasMutedPost: boolean;
-	latestReplyPostId: number;
-	latestReplyAuthorId: number;
+	latestReplyPostId: string;
+	latestReplyAuthorId: string;
 	ignoreStatus: IgnoreResponse;
 	locale: string;
 }
@@ -314,7 +314,7 @@ export interface PostSearchResponse {
 export interface GroupResponse {
 	detail: GroupV2;
 	founder: GroupMember;
-	alliedIds: number[];
+	alliedIds: string[];
 	parentGroup: GroupV2;
 	allianceStatus: GroupAllianceStatus;
 	groupJoinInviteCount: number;
@@ -329,10 +329,10 @@ export interface GroupResponse {
 }
 
 export interface GroupV2 {
-	groupId: number;
+	groupId: string;
 	name: string;
 	groupType: GroupType;
-	membershipIdCreated: number;
+	membershipIdCreated: string;
 	creationDate: string;
 	modificationDate: string;
 	about: string;
@@ -340,7 +340,7 @@ export interface GroupV2 {
 	memberCount: number;
 	isPublic: boolean;
 	isPublicTopicAdminOnly: boolean;
-	primaryAlliedGroupId: number;
+	primaryAlliedGroupId: string;
 	motto: string;
 	allowChat: boolean;
 	isDefaultPostPublic: boolean;
@@ -354,7 +354,7 @@ export interface GroupV2 {
 	bannerPath: string;
 	avatarPath: string;
 	isAllianceOwner: boolean;
-	conversationId: number;
+	conversationId: string;
 	enableInvitationMessagingForAdmins: boolean;
 	banExpireDate?: string;
 	features: GroupFeatures;
@@ -698,7 +698,7 @@ export interface DestinyItemQuantity {
 	/**
 	 * If this quantity is referring to a specific instance of an item, this will have the item's instance ID. Normally, this will be null.
 	 */
-	itemInstanceId?: number;
+	itemInstanceId?: string;
 	/**
 	 * The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.
 	 */
@@ -4207,7 +4207,7 @@ export interface DestinyItemCategoryDefinition {
 }
 
 export interface GroupUserBase {
-	groupId: number;
+	groupId: string;
 	destinyUserInfo: UserInfoCard;
 	bungieNetUserInfo: UserInfoCard;
 	joinDate: string;
@@ -4216,7 +4216,7 @@ export interface GroupUserBase {
 export interface GroupMember {
 	memberType: RuntimeGroupMemberType;
 	isOnline: boolean;
-	groupId: number;
+	groupId: string;
 	destinyUserInfo: UserInfoCard;
 	bungieNetUserInfo: UserInfoCard;
 	joinDate: string;
@@ -4230,7 +4230,7 @@ export enum GroupAllianceStatus {
 
 export interface GroupPotentialMember {
 	potentialStatus: GroupPotentialMemberStatus;
-	groupId: number;
+	groupId: string;
 	destinyUserInfo: UserInfoCard;
 	bungieNetUserInfo: UserInfoCard;
 	joinDate: string;
@@ -4248,7 +4248,7 @@ export interface TagResponse {
 }
 
 export interface PollResponse {
-	topicId: number;
+	topicId: string;
 	results: PollResult[];
 	totalVotes: number;
 }
@@ -4262,16 +4262,16 @@ export interface PollResult {
 }
 
 export interface ForumRecruitmentDetail {
-	topicId: number;
+	topicId: string;
 	microphoneRequired: boolean;
 	intensity: ForumRecruitmentIntensityLabel;
 	tone: ForumRecruitmentToneLabel;
 	approved: boolean;
-	conversationId?: number;
+	conversationId?: string;
 	playerSlotsTotal: number;
 	playerSlotsRemaining: number;
 	Fireteam: GeneralUser[];
-	kickedPlayerIds: number[];
+	kickedPlayerIds: string[];
 }
 
 export enum ForumRecruitmentIntensityLabel {
@@ -4292,8 +4292,8 @@ export enum ForumPostSortEnum {
 }
 
 export interface SaveMessageResult {
-	conversationId: number;
-	messageId: number;
+	conversationId: string;
+	messageId: string;
 }
 
 export interface GroupTheme {
@@ -4306,7 +4306,7 @@ export interface GroupTheme {
  * A small infocard of group information, usually used for when a list of groups are returned
  */
 export interface GroupV2Card {
-	groupId: number;
+	groupId: string;
 	name: string;
 	groupType: GroupType;
 	creationDate: string;
@@ -4387,15 +4387,15 @@ export enum GroupMemberCountFilter {
 }
 
 export interface GroupOptionalConversation {
-	groupId: number;
-	conversationId: number;
+	groupId: string;
+	conversationId: string;
 	chatEnabled: boolean;
 	chatName: string;
 	chatSecurity: ChatSecuritySetting;
 }
 
 export interface GroupCreationResponse {
-	groupId: number;
+	groupId: string;
 }
 
 export interface GroupAction {
@@ -4532,7 +4532,7 @@ export enum IgnoreLength {
 }
 
 export interface GroupBan {
-	groupId: number;
+	groupId: string;
 	lastModifiedBy: UserInfoCard;
 	createdBy: UserInfoCard;
 	dateBanned: string;
@@ -4573,11 +4573,11 @@ export interface GroupApplicationRequest {
 }
 
 export interface GroupMemberApplication {
-	groupId: number;
+	groupId: string;
 	creationDate: string;
 	resolveState: GroupApplicationResolveState;
 	resolveDate?: string;
-	resolvedByMembershipId?: number;
+	resolvedByMembershipId?: string;
 	requestMessage: string;
 	resolveMessage: string;
 	destinyUserInfo: UserInfoCard;
@@ -4600,7 +4600,7 @@ export interface SearchResultOfGroupMemberApplication {
 }
 
 export interface EntityActionResult {
-	entityId: number;
+	entityId: string;
 	result: PlatformErrorCodes;
 }
 
@@ -5452,7 +5452,7 @@ export interface DestinyVendorReceipt {
 	/**
 	 * The ID of the character who made the purchase.
 	 */
-	purchasedByCharacterId: number;
+	purchasedByCharacterId: string;
 	/**
 	 * Whether you can get a refund, and what happens in order for the refund to be received. See the DestinyVendorItemRefundPolicy enum for details.
 	 */
@@ -5464,7 +5464,7 @@ export interface DestinyVendorReceipt {
 	/**
 	 * The seconds since epoch at which this receipt is rendered invalid.
 	 */
-	timeToExpiration: number;
+	timeToExpiration: string;
 	/**
 	 * The date at which this receipt is rendered invalid.
 	 */
@@ -5514,7 +5514,7 @@ export interface DestinyItemComponent {
 	/**
 	 * If the item is instanced, it will have an instance ID. Lack of an instance ID implies that the item has no distinct local qualities aside from stack size.
 	 */
-	itemInstanceId?: number;
+	itemInstanceId?: string;
 	/**
 	 * The quantity of the item in this stack. Note that Instanced items cannot stack. If an instanced item, this value will always be 1 (as the stack has exactly one item in it)
 	 */
@@ -5592,7 +5592,7 @@ export interface DestinyProfileComponent {
 	/**
 	 * A list of the character IDs, for further querying on your part.
 	 */
-	characterIds: number[];
+	characterIds: string[];
 }
 
 /**
@@ -5647,7 +5647,7 @@ export interface DestinyCharacterComponent {
 	/**
 	 * Every Destiny Profile has a membershipId. This is provided on the character as well for convenience.
 	 */
-	membershipId: number;
+	membershipId: string;
 	/**
 	 * membershipType tells you the platform on which the character plays. Examine the BungieMembershipType enumeration for possible values.
 	 */
@@ -5655,7 +5655,7 @@ export interface DestinyCharacterComponent {
 	/**
 	 * The unique identifier for the character.
 	 */
-	characterId: number;
+	characterId: string;
 	/**
 	 * The last date that the user played Destiny.
 	 */
@@ -5663,11 +5663,11 @@ export interface DestinyCharacterComponent {
 	/**
 	 * If the user is currently playing, this is how long they've been playing.
 	 */
-	minutesPlayedThisSession: number;
+	minutesPlayedThisSession: string;
 	/**
 	 * If this value is 525,600, then they played Destiny for a year. Or they're a very dedicated Rent fan. Note that this includes idle time, not just time spent actually in activities shooting things.
 	 */
-	minutesPlayedTotal: number;
+	minutesPlayedTotal: string;
 	/**
 	 * The user's calculated "Light Level". Light level is an indicator of your power that mostly matters in the end game, once you've reached the maximum character level: it's a level that's dependent on the average Attack/Defense power of your items.
 	 */
@@ -5828,12 +5828,12 @@ export interface DestinyClassDefinition {
 }
 
 export interface DictionaryComponentResponseOfint64AndDestinyCharacterComponent {
-	data: {[field: number]: undefined};
+	data: {[field: string]: DestinyCharacterComponent};
 	privacy: ComponentPrivacySetting;
 }
 
 export interface DictionaryComponentResponseOfint64AndDestinyInventoryComponent {
-	data: {[field: number]: DestinyInventoryComponent};
+	data: {[field: string]: DestinyInventoryComponent};
 	privacy: ComponentPrivacySetting;
 }
 
@@ -5999,7 +5999,7 @@ export interface DestinyQuestStatus {
 	/**
 	 * The current Quest Step will be an instanced item in the player's inventory. If you care about that, this is the instance ID of that item.
 	 */
-	itemInstanceId: number;
+	itemInstanceId: string;
 	/**
 	 * Whether or not the whole quest has been completed, regardless of whether or not you have redeemed the rewards for the quest.
 	 */
@@ -6284,7 +6284,7 @@ export interface DestinyMilestoneQuestRewardItem {
 	/**
 	 * If this quantity is referring to a specific instance of an item, this will have the item's instance ID. Normally, this will be null.
 	 */
-	itemInstanceId?: number;
+	itemInstanceId?: string;
 	/**
 	 * The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.
 	 */
@@ -6404,7 +6404,7 @@ export interface DestinyMilestoneValueDefinition {
 }
 
 export interface DictionaryComponentResponseOfint64AndDestinyCharacterProgressionComponent {
-	data: {[field: number]: undefined};
+	data: {[field: string]: DestinyCharacterProgressionComponent};
 	privacy: ComponentPrivacySetting;
 }
 
@@ -6471,7 +6471,7 @@ export interface DestinyItemPeerView {
 }
 
 export interface DictionaryComponentResponseOfint64AndDestinyCharacterRenderComponent {
-	data: {[field: number]: undefined};
+	data: {[field: string]: DestinyCharacterRenderComponent};
 	privacy: ComponentPrivacySetting;
 }
 
@@ -6563,24 +6563,24 @@ export enum DestinyActivityDifficultyTier {
 }
 
 export interface DictionaryComponentResponseOfint64AndDestinyCharacterActivitiesComponent {
-	data: {[field: number]: undefined};
+	data: {[field: string]: DestinyCharacterActivitiesComponent};
 	privacy: ComponentPrivacySetting;
 }
 
 export interface DictionaryComponentResponseOfint64AndDestinyKiosksComponent {
-	data: {[field: number]: undefined};
+	data: {[field: string]: DestinyKiosksComponent};
 	privacy: ComponentPrivacySetting;
 }
 
 export interface DestinyItemComponentSetOfint64 {
-	instances: undefined;
-	objectives: undefined;
-	perks: undefined;
-	renderData: undefined;
-	stats: undefined;
-	sockets: undefined;
-	talentGrids: undefined;
-	plugStates: undefined;
+	instances: DictionaryComponentResponseOfint64AndDestinyItemInstanceComponent;
+	objectives: DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent;
+	perks: DictionaryComponentResponseOfint64AndDestinyItemPerksComponent;
+	renderData: DictionaryComponentResponseOfint64AndDestinyItemRenderComponent;
+	stats: DictionaryComponentResponseOfint64AndDestinyItemStatsComponent;
+	sockets: DictionaryComponentResponseOfint64AndDestinyItemSocketsComponent;
+	talentGrids: DictionaryComponentResponseOfint64AndDestinyItemTalentGridComponent;
+	plugStates: DictionaryComponentResponseOfuint32AndDestinyItemPlugComponent;
 }
 
 /**
@@ -6686,7 +6686,7 @@ export interface DestinyUnlockDefinition {
 }
 
 export interface DictionaryComponentResponseOfint64AndDestinyItemInstanceComponent {
-	data: {[field: number]: undefined};
+	data: {[field: string]: DestinyItemInstanceComponent};
 	privacy: ComponentPrivacySetting;
 }
 
@@ -6702,7 +6702,7 @@ export interface DestinyItemObjectivesComponent {
 }
 
 export interface DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent {
-	data: {[field: number]: undefined};
+	data: {[field: string]: DestinyItemObjectivesComponent};
 	privacy: ComponentPrivacySetting;
 }
 
@@ -6742,7 +6742,7 @@ export interface DestinyPerkReference {
 }
 
 export interface DictionaryComponentResponseOfint64AndDestinyItemPerksComponent {
-	data: {[field: number]: undefined};
+	data: {[field: string]: DestinyItemPerksComponent};
 	privacy: ComponentPrivacySetting;
 }
 
@@ -6763,7 +6763,7 @@ export interface DestinyItemRenderComponent {
 }
 
 export interface DictionaryComponentResponseOfint64AndDestinyItemRenderComponent {
-	data: {[field: number]: undefined};
+	data: {[field: string]: DestinyItemRenderComponent};
 	privacy: ComponentPrivacySetting;
 }
 
@@ -6780,7 +6780,7 @@ export interface DestinyItemStatsComponent {
 }
 
 export interface DictionaryComponentResponseOfint64AndDestinyItemStatsComponent {
-	data: {[field: number]: undefined};
+	data: {[field: string]: DestinyItemStatsComponent};
 	privacy: ComponentPrivacySetting;
 }
 
@@ -6821,7 +6821,7 @@ export interface DestinyItemSocketState {
 }
 
 export interface DictionaryComponentResponseOfint64AndDestinyItemSocketsComponent {
-	data: {[field: number]: undefined};
+	data: {[field: string]: DestinyItemSocketsComponent};
 	privacy: ComponentPrivacySetting;
 }
 
@@ -6934,7 +6934,7 @@ export interface DestinyTalentNodeStatBlock {
 }
 
 export interface DictionaryComponentResponseOfint64AndDestinyItemTalentGridComponent {
-	data: {[field: number]: undefined};
+	data: {[field: string]: DestinyItemTalentGridComponent};
 	privacy: ComponentPrivacySetting;
 }
 
@@ -6956,7 +6956,7 @@ export interface DestinyItemPlugComponent {
 }
 
 export interface DictionaryComponentResponseOfuint32AndDestinyItemPlugComponent {
-	data: {[field: number]: undefined};
+	data: {[field: number]: DestinyItemPlugComponent};
 	privacy: ComponentPrivacySetting;
 }
 
@@ -7033,7 +7033,7 @@ export interface DestinyItemResponse {
 	/**
 	 * If the item is on a character, this will return the ID of the character that is holding the item.
 	 */
-	characterId?: number;
+	characterId?: string;
 	/**
 	 * Common data for the item relevant to its non-instanced properties.
 	 * COMPONENT TYPE: ItemCommonData
@@ -7293,53 +7293,53 @@ export interface DestinyUnlockStatus {
 }
 
 export interface DictionaryComponentResponseOfint32AndDestinyVendorSaleItemComponent {
-	data: {[field: number]: undefined};
+	data: {[field: number]: DestinyVendorSaleItemComponent};
 	privacy: ComponentPrivacySetting;
 }
 
 export interface DestinyItemComponentSetOfint32 {
-	instances: undefined;
-	objectives: undefined;
-	perks: undefined;
-	renderData: undefined;
-	stats: undefined;
-	sockets: undefined;
-	talentGrids: undefined;
-	plugStates: undefined;
+	instances: DictionaryComponentResponseOfint32AndDestinyItemInstanceComponent;
+	objectives: DictionaryComponentResponseOfint32AndDestinyItemObjectivesComponent;
+	perks: DictionaryComponentResponseOfint32AndDestinyItemPerksComponent;
+	renderData: DictionaryComponentResponseOfint32AndDestinyItemRenderComponent;
+	stats: DictionaryComponentResponseOfint32AndDestinyItemStatsComponent;
+	sockets: DictionaryComponentResponseOfint32AndDestinyItemSocketsComponent;
+	talentGrids: DictionaryComponentResponseOfint32AndDestinyItemTalentGridComponent;
+	plugStates: DictionaryComponentResponseOfuint32AndDestinyItemPlugComponent;
 }
 
 export interface DictionaryComponentResponseOfint32AndDestinyItemInstanceComponent {
-	data: {[field: number]: undefined};
+	data: {[field: number]: DestinyItemInstanceComponent};
 	privacy: ComponentPrivacySetting;
 }
 
 export interface DictionaryComponentResponseOfint32AndDestinyItemObjectivesComponent {
-	data: {[field: number]: undefined};
+	data: {[field: number]: DestinyItemObjectivesComponent};
 	privacy: ComponentPrivacySetting;
 }
 
 export interface DictionaryComponentResponseOfint32AndDestinyItemPerksComponent {
-	data: {[field: number]: undefined};
+	data: {[field: number]: DestinyItemPerksComponent};
 	privacy: ComponentPrivacySetting;
 }
 
 export interface DictionaryComponentResponseOfint32AndDestinyItemRenderComponent {
-	data: {[field: number]: undefined};
+	data: {[field: number]: DestinyItemRenderComponent};
 	privacy: ComponentPrivacySetting;
 }
 
 export interface DictionaryComponentResponseOfint32AndDestinyItemStatsComponent {
-	data: {[field: number]: undefined};
+	data: {[field: number]: DestinyItemStatsComponent};
 	privacy: ComponentPrivacySetting;
 }
 
 export interface DictionaryComponentResponseOfint32AndDestinyItemSocketsComponent {
-	data: {[field: number]: undefined};
+	data: {[field: number]: DestinyItemSocketsComponent};
 	privacy: ComponentPrivacySetting;
 }
 
 export interface DictionaryComponentResponseOfint32AndDestinyItemTalentGridComponent {
-	data: {[field: number]: undefined};
+	data: {[field: number]: DestinyItemTalentGridComponent};
 	privacy: ComponentPrivacySetting;
 }
 
@@ -7348,13 +7348,13 @@ export interface DestinyActionRequest {
 }
 
 export interface DestinyCharacterActionRequest {
-	characterId: number;
+	characterId: string;
 	membershipType: BungieMembershipType;
 }
 
 export interface DestinyItemActionRequest {
-	itemId: number;
-	characterId: number;
+	itemId: string;
+	characterId: string;
 	membershipType: BungieMembershipType;
 }
 
@@ -7362,8 +7362,8 @@ export interface DestinyItemTransferRequest {
 	itemReferenceHash: number;
 	stackSize: number;
 	transferToVault: boolean;
-	itemId: number;
-	characterId: number;
+	itemId: string;
+	characterId: string;
 	membershipType: BungieMembershipType;
 }
 
@@ -7381,7 +7381,7 @@ export interface DestinyEquipItemResult {
 	/**
 	 * The instance ID of the item in question (all items that can be equipped must, but definition, be Instanced and thus have an Instance ID that you can use to refer to them)
 	 */
-	itemInstanceId: number;
+	itemInstanceId: string;
 	/**
 	 * A PlatformErrorCodes enum indicating whether it succeeded, and if it failed why.
 	 */
@@ -7389,15 +7389,15 @@ export interface DestinyEquipItemResult {
 }
 
 export interface DestinyItemSetActionRequest {
-	itemIds: number[];
-	characterId: number;
+	itemIds: string[];
+	characterId: string;
 	membershipType: BungieMembershipType;
 }
 
 export interface DestinyItemStateRequest {
 	state: boolean;
-	itemId: number;
-	characterId: number;
+	itemId: string;
+	characterId: string;
 	membershipType: BungieMembershipType;
 }
 
@@ -7429,7 +7429,7 @@ export interface DestinyHistoricalStatsActivity {
 	/**
 	 * This value can be used to get additional data about this activity such as who else was playing.
 	 */
-	instanceId: number;
+	instanceId: string;
 	/**
 	 * Indicates the game mode of the activity.
 	 */
@@ -7457,7 +7457,7 @@ export interface DestinyPostGameCarnageReportEntry {
 	/**
 	 * ID of the player's character used in the activity.
 	 */
-	characterId: number;
+	characterId: string;
 	/**
 	 * Collection of stats for the player in this activity.
 	 */
@@ -7695,7 +7695,7 @@ export interface DestinyLeaderboardEntry {
 	/**
 	 * ID of the player's best character for the reported stat.
 	 */
-	characterId: number;
+	characterId: string;
 	/**
 	 * Value of the stat for this player
 	 */
@@ -7706,11 +7706,11 @@ export interface DestinyLeaderboardResults {
 	/**
 	 * Indicate the membership ID of the account that is the focal point of the provided leaderboards.
 	 */
-	focusMembershipId?: number;
+	focusMembershipId?: string;
 	/**
 	 * Indicate the character ID of the character that is the focal point of the provided leaderboards. May be null, in which case any character from the focus membership can appear in the provided leaderboards.
 	 */
-	focusCharacterId?: number;
+	focusCharacterId?: string;
 }
 
 export interface DestinyClanAggregateStat {
@@ -7822,7 +7822,7 @@ export interface DestinyHistoricalStatsWithMerged {
 }
 
 export interface DestinyHistoricalStatsPerCharacter {
-	characterId: number;
+	characterId: string;
 	deleted: boolean;
 	results: {[field: string]: DestinyHistoricalStatsByPeriod};
 	merged: DestinyHistoricalStatsByPeriod;
@@ -7994,7 +7994,7 @@ export interface CommunityLiveStatus {
 	thumbnail: string;
 	thumbnailSmall: string;
 	thumbnailLarge: string;
-	destinyCharacterId: number;
+	destinyCharacterId: string;
 	userInfo: UserInfoCard;
 	currentActivityHash: number;
 	dateLastPlayed: string;
@@ -8127,7 +8127,7 @@ export interface TrendingEntryNews {
 }
 
 export interface ContentItemPublicContract {
-	contentId: number;
+	contentId: string;
 	cType: string;
 	cmsPath: string;
 	creationDate: string;
@@ -8155,7 +8155,7 @@ export interface ContentRepresentation {
 }
 
 export interface CommentSummary {
-	topicId: number;
+	topicId: string;
 	commentCount: number;
 }
 
@@ -8213,8 +8213,8 @@ export interface TrendingEntryCommunityCreation {
 	media: string;
 	title: string;
 	author: string;
-	authorMembershipId: number;
-	postId: number;
+	authorMembershipId: string;
+	postId: string;
 	body: string;
 	upvotes: number;
 }

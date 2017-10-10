@@ -221,7 +221,7 @@ export interface Reference {
 }
 
 export function isReference(value: any): value is Reference {
-	return value instanceof Object && Object.keys(value).length === 1 && value.$ref !== undefined;
+	return value instanceof Object && value.$ref !== undefined;
 }
 
 export interface Schema {
