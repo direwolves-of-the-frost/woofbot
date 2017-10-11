@@ -1,13 +1,12 @@
+import {BungieAPI, BungieMembershipType, Destiny} from 'bungie-net';
 import {Message, RichEmbed} from 'discord.js';
-import {BungieAPI} from '../bungie-api';
-import * as Defs from '../bungie-api/definitions';
 import {Command} from '../command';
 
 const destiny = new BungieAPI(process.env.BUNGIE_KEY).destiny2;
-const platforms: {[platform: string]: Defs.BungieMembershipType} = {
-	bnet: Defs.BungieMembershipType.TigerBlizzard,
-	psn: Defs.BungieMembershipType.TigerPsn,
-	xbox: Defs.BungieMembershipType.TigerXbox,
+const platforms: {[platform: string]: BungieMembershipType} = {
+	bnet: BungieMembershipType.TigerBlizzard,
+	psn: BungieMembershipType.TigerPsn,
+	xbox: BungieMembershipType.TigerXbox,
 };
 
 function formatDuration(duration: number) {
@@ -54,7 +53,7 @@ export class PlayerCommand extends Command {
 		const displayName = args[0];
 		const platform = args[1];
 
-		let membershipType = Defs.BungieMembershipType.All;
+		let membershipType = BungieMembershipType.All;
 
 		if (platform !== undefined) {
 			membershipType = platforms[platform];
@@ -68,7 +67,7 @@ export class PlayerCommand extends Command {
 
 						if (player !== undefined) {
 							return destiny.getProfile(player.membershipType, player.membershipId).then((profile) => {
-								const promises: Array<Promise<Defs.DestinyCharacterResponse>> = [];
+								const promises: Array<Promise<Destiny.Responses.DestinyCharacterResponse>> = [];
 
 								profile.profile.data.characterIds.forEach((characterId) => {
 									promises.push(destiny.getCharacter(player.membershipType, player.membershipId, characterId));
@@ -83,11 +82,11 @@ export class PlayerCommand extends Command {
 										const data = character.character.data;
 
 										embed.addField(
-											Defs.DestinyClass[data.classType],
+											Destiny.DestinyClass[data.classType],
 											`Level: ${data.baseCharacterLevel}\n` +
 											`Light Level: ${data.light}\n` +
-											`Race: ${Defs.DestinyRace[data.raceType]}\n` +
-											`Gender: ${Defs.DestinyGender[data.genderType]}\n` +
+											`Race: ${Destiny.DestinyRace[data.raceType]}\n` +
+											`Gender: ${Destiny.DestinyGender[data.genderType]}\n` +
 											`Playtime: ${formatDuration(parseInt(data.minutesPlayedTotal, 10))}\n` +
 											`Last Played: ${data.dateLastPlayed}\n`,
 										);

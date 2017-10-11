@@ -28,6 +28,7 @@
 		"generate:definitions": "ts-node tools/generators/definitions.ts"
 	},
 	"dependencies": {
+		"bungie-net": "https://github.com/direwolves-of-the-frost/bungie-net/releases/download/0.0.1-alpha/bungie-api.tar",
 		"discord.js": "^11.2.1",
 		"dotenv": "^4.0.0",
 		"request": "^2.83.0",

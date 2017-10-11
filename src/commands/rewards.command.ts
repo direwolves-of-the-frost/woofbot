@@ -1,5 +1,5 @@
+import {BungieAPI} from 'bungie-net';
 import {Message, RichEmbed} from 'discord.js';
-import {BungieAPI} from '../bungie-api';
 import {Command} from '../command';
 
 const destiny = new BungieAPI(process.env.BUNGIE_KEY).destiny2;
