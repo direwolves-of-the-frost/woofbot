@@ -24,8 +24,7 @@
 		"start": "npm-run-all build server",
 		"watch:build": "tsc -p . --watch",
 		"watch:server": "nodemon ./bin/index.js --watch ./bin",
-		"watch:start": "npm run build && npm-run-all --parallel watch:build watch:server",
-		"generate:definitions": "ts-node tools/generators/definitions.ts"
+		"watch:start": "npm run build && npm-run-all --parallel watch:build watch:server"
 	},
 	"dependencies": {
 		"bungie-net": "https://github.com/direwolves-of-the-frost/bungie-net/releases/download/0.0.1-alpha/bungie-api.tar",
